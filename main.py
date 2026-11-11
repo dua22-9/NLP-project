@@ -1,7 +1,7 @@
 """
 main.py
-Master runner for Person 1 (Team Lead)
-Runs Task 1 (Dataset setup) and Task 2 (Exploration and statistics).
+Master runner for Person 2 (Group Member 1)
+Runs Tasks 3, 4, and 5 (Tokenization, Cleaning Pipeline & Output generation).
 """
 
 import sys
@@ -9,22 +9,28 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
-from load_data import load_dataset
-from exploration import run_exploration
+from tokenization import compare_tokenizers, test_regex_patterns
+from cleaning_pipeline import compare_stemming_and_lemmatization
+from save_cleaned_data import run_and_save
 
 
 def main():
-    print("Running Person 1 Tasks (Setup, Data Acquisition & Exploration)")
+    print("Running Person 2 Tasks (Tokenization, Cleaning Pipeline & Output)")
 
-    print("\nTask 1: Loading raw Kaggle Twitter corpus...")
-    load_dataset()
+    print("\nTask 3: Running Tokenizer Benchmarking and Regex Patterns...")
+    compare_tokenizers()
+    test_regex_patterns()
 
-    print("\nTask 2: Running corpus statistics and generating plots...")
-    run_exploration()
+    print("\nTask 4: Comparing Stemming vs. Lemmatization...")
+    compare_stemming_and_lemmatization()
 
-    print("\nPerson 1 tasks finished successfully.")
-    print("Figures saved in person_1/figures/")
-    print("Notebook ready at person_1/notebooks/01_exploration.ipynb")
+    print("\nTask 5: Running Cleaning Pipeline on Full Dataset & Exporting Cleaned Corpus...")
+    run_and_save()
+
+    print("\nPerson 2 tasks finished successfully.")
+    print("Cleaned corpus saved in person_2/data/cleaned_corpus.csv")
+    print("Reduction chart saved in person_2/figures/vocab_reduction.png")
+    print("Notebook ready at person_2/notebooks/02_tokenization_and_cleaning.ipynb")
 
 
 if __name__ == "__main__":
